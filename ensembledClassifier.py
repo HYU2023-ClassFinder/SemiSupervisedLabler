@@ -17,9 +17,8 @@ rfCLF = RandomForestClassifier(n_estimators=20)
 
 models = [lrCLF, svmCLF, nbCLF, rfCLF]
 
-df = pd.read_csv('annotated_predicted_triples.csv')
-
 for i in list(range(len(models))):
+    df = pd.read_csv('annotated_predicted_triples.csv')
     labeled_df = df[df['labeled_class'] != -1]
     unlabeled_df = df[df['labeled_class'] == -1]
 
@@ -33,7 +32,7 @@ for i in list(range(len(models))):
     # initial training'
     regressor = models[i]
 
-    regressor.fit(x_train[['score', 'triple_incidence', 'head_rate', 'tail_rate']], y_train)
+    regressor.fit(x_labeled[['score', 'triple_incidence', 'head_rate', 'tail_rate']], y_labeled)
 
     modelName = ""
     if(i == 0):
@@ -65,6 +64,7 @@ for i in list(range(len(models))):
 
     # Final prediction and evaluation on the test data
     y_pred_test = regressor.predict(x_test[['score', 'triple_incidence', 'head_rate', 'tail_rate']])
+    print("=================", modelName, "=================")
     print(classification_report(y_test, y_pred_test))
 
     # Final prediction on the entire data and save to file

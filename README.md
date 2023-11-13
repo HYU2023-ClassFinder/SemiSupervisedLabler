@@ -7,3 +7,5 @@ TransE가 예측한 triple을 전부 신뢰할 수 없었기 때문에 정말 �
 
 Logistic Regression, Soft margin SVM, Naive Bayes Classifier, Random Forest Classifier를 사용했으며,
 그 중 Random Forest가 가장 성능이 가장 좋음을 확인했습니다.
+
+ensembledClassifier.py를 실행하시면 네 모델 간 성능 비교 결과를 확인해보실 수 있습니다.
